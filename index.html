@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picture Gallery</title>
+    <style>
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 90%; /* Set maximum width */
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #333; /* Dark grey background */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Display two columns */
+            grid-gap: 20px; /* Gap between grid items */
+        }
+        .picture {
+            position: relative; /* Position relative for absolute positioning of .ripples */
+            overflow: hidden; /* Hide overflow to prevent ripple from protruding */
+            cursor: pointer; /* Change cursor to pointer when hovering over picture */
+        }
+        .picture img {
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.2s ease-in-out; /* Smooth transition for trembling effect */
+        }
+        .title {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 10px;
+            color: #fff; /* White text color */
+        }
+        .ripples {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none; /* Ensure the ripple effect does not interfere with cursor interaction */
+            animation: none; /* Initially no animation */
+        }
+
+        @keyframes ripple-animation {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 400px;
+                height: 400px;
+                opacity: 0;
+            }
+        }
+
+        /* Apply trembling effect when hovering over the picture */
+        .picture:hover img {
+            transform: scale(1.1); /* Apply trembling effect */
+        }
+
+        /* Responsive styles */
+        @media only screen and (max-width: 600px) {
+            .container {
+                grid-template-columns: 1fr; /* On smaller screens, display one column */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="picture" onmouseover="startRipple(this)" onmouseleave="stopRipple(this)">
+            <div class="ripples"></div> <!-- Ripple effect -->
+            <h2 class="title">MODE 1_ Solar & BESS & GRID - EXPORT</h2>
+            <img src="MODE 1_ Solar & BESS & GRID - EXPORT.svg" alt="Picture 1">
+        </div>
+        <div class="picture" onmouseover="startRipple(this)" onmouseleave="stopRipple(this)">
+            <div class="ripples"></div> <!-- Ripple effect -->
+            <h2 class="title">MODE 2_ Solar - EXPORT _ GRID & BESS - IMPORT</h2>
+            <img src="MODE 2_ Solar - EXPORT _ GRID & BESS - IMPORT.svg" alt="Picture 2">
+        </div>
+        <div class="picture" onmouseover="startRipple(this)" onmouseleave="stopRipple(this)">
+            <div class="ripples"></div> <!-- Ripple effect -->
+            <h2 class="title">MODE 3_ Solar - OFF _ GRID & BESS - IMPORT</h2>
+            <img src="MODE 3_ Solar - OFF _ GRID & BESS - IMPORT.svg" alt="Picture 3">
+        </div>
+        <div class="picture" onmouseover="startRipple(this)" onmouseleave="stopRipple(this)">
+            <div class="ripples"></div> <!-- Ripple effect -->
+            <h2 class="title">MODE 4_ Solar - EXPORT _ GRID - OFF _ BESS - IMPORT</h2>
+            <img src="MODE 4_ Solar - EXPORT _ GRID - OFF _ BESS - IMPORT.svg" alt="Picture 4">
+        </div>
+    </div>
+
+    <script>
+        function startRipple(element) {
+            element.querySelector('.ripples').style.animation = 'ripple-animation 1s linear infinite'; /* Start ripple animation */
+        }
+
+        function stopRipple(element) {
+            element.querySelector('.ripples').style.animation = 'none'; /* Stop ripple animation */
+        }
+    </script>
+</body>
+</html>
